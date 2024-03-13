@@ -8,6 +8,7 @@ import store from "./store/store.js";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import FriendsPage from "./pages/FriendsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path:"/home",
         element: <HomePage/>
+      },
+      {
+        path:"/friends",
+        element: <FriendsPage/>
       },
     ],
   },

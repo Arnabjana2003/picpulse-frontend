@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from './Logo'
 import SearchBar from './SearchBar'
+import ProfileIcon from './ProfileIcon'
 
 function Header() {
   return (
@@ -14,20 +15,17 @@ function Header() {
                 <Logo/>
                 <div className='flex'>
                     <p className='mr-2'>Search</p>
-                    <p>Menu</p>
                 </div>
             </div>
             <div className='col-span-6 flex items-center justify-evenly'>
                 <p>Home</p>
-                <p>Video</p>
                 <p>Friends</p>
             </div>
             <div className='hidden md:flex justify-center items-center lg:hidden col-span-1'>
                 <p>Menu</p>
             </div>
-            <div className='hidden col-span-3 lg:flex items-center justify-evenly'>
-                <p>Menu</p>
-                <p>Profile</p>
+            <div className='hidden col-span-3 lg:flex items-center justify-end'>
+                <ProfileIcon/>
             </div>
         </header>
     </div>
