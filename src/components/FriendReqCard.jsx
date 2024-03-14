@@ -8,8 +8,8 @@ function FriendReqCard() {
         </div>
         <h4 className='font-semibold text-lg p-2'>Arnab Jana</h4>
         <div className=''>
-            <button className="block rounded-md text-center mb-2 p-1 bg-blue-100 text-blue-600 font-semibold">Add friend</button>
-            <button className="block rounded-md text-center mb-2 p-1 bg-slate-300">Remove</button>
+            <button className="w-full rounded-md text-center mb-2 p-1 bg-blue-100 text-blue-600 font-semibold">Add friend</button>
+            <button className="w-full rounded-md text-center mb-2 p-1 bg-slate-300">Remove</button>
         </div>
     </div>
   )

@@ -9,6 +9,8 @@ import LoginPage from "./pages/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import FriendsPage from "./pages/FriendsPage.jsx";
+import Protector from "./components/Protector.jsx";
+import CreatePostPage from "./pages/CreatePostPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,19 +19,23 @@ const router = createBrowserRouter([
     children: [
       {
         path:"/login",
-        element: <LoginPage/>
+        element: <Protector authentication={false}><LoginPage/></Protector>
       },
       {
         path:"/signup",
-        element: <SignupPage/>
+        element: <Protector authentication={false}><SignupPage/></Protector>
       },
       {
         path:"/home",
-        element: <HomePage/>
+        element: <Protector authentication={true}><HomePage/></Protector>
       },
       {
         path:"/friends",
         element: <FriendsPage/>
+      },
+      {
+        path:"/createpost",
+        element: <Protector authentication={true}><CreatePostPage/></Protector>
       },
     ],
   },

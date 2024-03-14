@@ -1,14 +1,14 @@
 import React from 'react'
 import LikeButton from './LikeButton'
 import CommentButton from './CommentButton'
+import ProfileImgIcon from './ProfileImgIcon'
 
 function PostCard() {
   return (
-    <div className='mb-8 mx-auto w-[90%] border rounded-md overflow-hidden bg-slate-50 shadow-lg'>
+    <div className='mb-8 mx-auto md:w-[90%] border rounded-md overflow-hidden bg-slate-50 shadow-lg'>
         <header className='p-3'>
             <div className='flex items-center'>
-                <div className='profile-img w-11 h-11 bg-slate-700 rounded-full mr-2'>
-                </div>
+                <ProfileImgIcon/>
                 <div>
                     <h4 className='font-semibold'>Arnab Jana</h4>
                     <p className=' text-sm'>1day ago</p>
