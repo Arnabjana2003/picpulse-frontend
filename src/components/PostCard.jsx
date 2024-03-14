@@ -1,34 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LikeButton from './LikeButton'
 import CommentButton from './CommentButton'
 import ProfileImgIcon from './ProfileImgIcon'
+import TimeAgo from './TimeAgo'
 
-function PostCard() {
+function PostCard({post}) {
+    const [comment,setComment] = useState(post?.commentsCount)
   return (
     <div className='mb-8 mx-auto md:w-[90%] border rounded-md overflow-hidden bg-slate-50 shadow-lg'>
         <header className='p-3'>
             <div className='flex items-center'>
-                <ProfileImgIcon/>
+                <ProfileImgIcon src={post?.owner?.profileImageLink}/>
                 <div>
-                    <h4 className='font-semibold'>Arnab Jana</h4>
-                    <p className=' text-sm'>1day ago</p>
+                    <h4 className='font-semibold'>{post?.owner?.fullName}</h4>
+                    <p className=' text-sm'><TimeAgo timestamp={post?.createdAt}/></p>
                 </div>
             </div>
             <div className='about mt-2'>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo, error!</p>
+                <p>{post?.about}</p>
             </div>
         </header>
         <div className='content-div w-full min-h-56 bg-slate-700'>
-            {/* <img src='' alt='content' className='w-full'/> */}
+            <img src={post?.contentUrl} alt='content' className='w-full'/>
         </div>
-        <div className='likes-comments-counts mt-2 text-sm px-3 pb-1 flex justify-between'>
-            <p>1k likes</p>
-            <p>300 comments</p>
+        <div className='flex justify-around p-3 my-4 border-y-2'>
+            <div className='px-5 py-1 rounded-md hover:bg-slate-200'><LikeButton likesCount={post.likesCount} isLiked={post?.isLiked} postId={post._id}/></div>
+            <div className='px-5 py-1 rounded-md hover:bg-slate-200'>Comment | {comment}</div>
         </div>
-        <hr/>
-        <div className='flex justify-around p-4'>
-            <div className='px-5 py-1 rounded-md hover:bg-slate-200'><LikeButton /></div>
-            <div className='px-5 py-1 rounded-md hover:bg-slate-200'><CommentButton /></div>
+        <div className='p-3'>
+            <CommentButton postId={post?._id} func={setComment}/>
         </div>
     </div>
   )
