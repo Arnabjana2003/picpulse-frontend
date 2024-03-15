@@ -18,6 +18,10 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path:"/",
+        element: <Protector authentication={true}><HomePage/></Protector>
+      },
+      {
         path:"/login",
         element: <Protector authentication={false}><LoginPage/></Protector>
       },
@@ -31,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/friends",
-        element: <FriendsPage/>
+        element: <Protector authentication={true}><FriendsPage/></Protector>
       },
       {
         path:"/createpost",
