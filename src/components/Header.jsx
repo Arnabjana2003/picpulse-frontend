@@ -3,8 +3,11 @@ import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import ProfileIcon from "./ProfileIcon";
 import { NavLink } from "react-router-dom";
+import ProfileImgIcon from "./ProfileImgIcon";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const currentUser = useSelector(state=>state.auth?.data)
   const navLinks = [
     {
       name: "Home",
@@ -20,7 +23,7 @@ function Header() {
     },
   ];
   return (
-    <div className="bg-white px-2 fixed top-0 right-0 left-0">
+    <div className="bg-white px-2 fixed top-0 right-0 left-0 z-50">
       <header className="grid grid-cols-6 md:grid-cols-9 lg:grid-cols-12">
         <div className="hidden col-span-2 lg:col-span-3 md:flex items-center">
           <div>
@@ -52,7 +55,8 @@ function Header() {
           <p>Menu</p>
         </div>
         <div className="hidden col-span-3 lg:flex items-center justify-end">
-          <ProfileIcon />
+          {/* <ProfileIcon /> */}
+          <ProfileImgIcon owner={currentUser}/>
         </div>
       </header>
     </div>

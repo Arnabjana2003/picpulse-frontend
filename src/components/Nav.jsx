@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logout from './Logout'
+import { useSelector } from 'react-redux'
 
 function Nav() {
+    const currentUser = useSelector(state=>state.auth?.data)
     const navLinks = [
         {
-            name: "Arnab Jana",
+            name: currentUser?.fullName,
             to:'/home',
             icon: ""
         },
@@ -19,9 +22,10 @@ function Nav() {
             icon: ""
         },
         {
-            name: "Log out",
+            name: <Logout>Logout</Logout>,
             to:'/home',
-            icon: ""
+            icon: "",
+            
         },
     ]
   return (

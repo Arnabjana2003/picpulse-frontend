@@ -9,7 +9,6 @@ function HomePage() {
   useEffect(()=>{
     postApis.getFeeds()
     .then(res=>{
-      console.log(res.data.feeds)
       setPosts(res.data.feeds)
     })
     .catch((err)=>alert(err.response.data.message))

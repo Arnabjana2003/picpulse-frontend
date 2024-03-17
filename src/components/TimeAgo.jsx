@@ -1,11 +1,11 @@
 import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
-function TimeAgo({ timestamp }) {
+function TimeAgo({ timestamp ,className }) {
   const distance = formatDistanceToNow(new Date(timestamp), { addSuffix: true });
   
   return (
-    <span>{distance}</span>
+    <span className={className}>{distance}</span>
   );
 }
 

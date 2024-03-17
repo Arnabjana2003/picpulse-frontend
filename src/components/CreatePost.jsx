@@ -2,10 +2,11 @@ import React, { useRef, useState } from "react";
 import ProfileImgIcon from "./ProfileImgIcon";
 import fileServices from "../Backend apis/fileServices.js";
 import postApis from "../Backend apis/postApis.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { endUploading, startUploading } from "../store/uploadingStatusSlice.js";
 
 function CreatePost() {
+  const currentUser = useSelector(state=>state.auth?.data)
   const dispatch = useDispatch()
   const fileRef = useRef(null);
   const [data, setData] = useState({ about: "", file: "" });
@@ -60,7 +61,7 @@ function CreatePost() {
         <hr />
 
         <div className="flex items-center mt-3">
-          <ProfileImgIcon />
+          <ProfileImgIcon owner={currentUser} />
           <div className="ml-3">
             <h5 className="font-semibold">Arnab Jana</h5>
             <p>Public</p>

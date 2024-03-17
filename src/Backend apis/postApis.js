@@ -23,7 +23,7 @@ const postApis = {
             const res = await axios.post(`${endPoind}/post/create`,data,authHeader)
             return res.data
         } catch (error) {
-            console.log("ERROR AT GET FEEDS API::",error)
+            console.log("ERROR AT CREATE POST API::",error)
             throw error
         }
     },
@@ -32,7 +32,7 @@ const postApis = {
             const res = await axios.post(`${endPoind}/like`,{postId},authHeader)
             return res.data
         } catch (error) {
-            console.log("ERROR AT GET FEEDS API::",error)
+            console.log("ERROR AT LIKE POST API::",error)
             throw error
         }
     },
@@ -41,7 +41,16 @@ const postApis = {
             const res = await axios.post(`${endPoind}/comment/add`,data,authHeader)
             return res.data
         } catch (error) {
-            console.log("ERROR AT GET FEEDS API::",error)
+            console.log("ERROR AT ADD COMMENT API::",error)
+            throw error
+        }
+    },
+    viewPost: async(postId)=>{
+        try {
+            const res = await axios.post(`${endPoind}/post/view`,{postId},authHeader)
+            return res.data
+        } catch (error) {
+            console.log("ERROR AT VIEW POST API::",error)
             throw error
         }
     },

@@ -11,6 +11,9 @@ import HomePage from "./pages/HomePage.jsx";
 import FriendsPage from "./pages/FriendsPage.jsx";
 import Protector from "./components/Protector.jsx";
 import CreatePostPage from "./pages/CreatePostPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
+import UpdatePicPage from "./pages/UpdatePicPage.jsx";
+import ViewPostPage from "./pages/ViewPostPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +43,18 @@ const router = createBrowserRouter([
       {
         path:"/createpost",
         element: <Protector authentication={true}><CreatePostPage/></Protector>
+      },
+      {
+        path:"/profile/:userId",
+        element: <Protector authentication={true}><ProfilePage/></Protector>
+      },
+      {
+        path:"/post/:postId",
+        element: <Protector authentication={true}><ViewPostPage/></Protector>
+      },
+      {
+        path:"/profile/update/:isProfilePicUpdation/:imageId",
+        element: <Protector authentication={true}><UpdatePicPage/></Protector>
       },
     ],
   },

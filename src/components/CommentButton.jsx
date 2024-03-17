@@ -21,7 +21,7 @@ function CommentButton({func, postId }) {
       {comArr.length != 0 &&
         comArr.map((com, index) => (
           <div key={index} className="p-2 mb-3 rounded-md bg-white flex ">
-            <ProfileImgIcon src={owner.profileImageLink} />
+            <ProfileImgIcon owner={owner} />
             <div>
               <h3 className="font-semibold text-slate-700 mb-1">
                 {owner.fullName}
@@ -30,7 +30,7 @@ function CommentButton({func, postId }) {
             </div>
           </div>
         ))}
-      <div className=" flex items-center ">
+      <div className=" flex items-center w-full">
         <textarea
           placeholder="Write your comment"
           className="flex-grow w-full h-full p-2"

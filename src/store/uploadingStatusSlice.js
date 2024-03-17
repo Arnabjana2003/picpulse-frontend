@@ -1,12 +1,21 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-const initialState = false
+const initialState = {
+    status:false,
+    message:""
+}
 const uploadingStatusSlice = createSlice({
     name: "uploadingStatus",
     initialState,
     reducers: {
-        startUploading: (state)=>state = true,
-        endUploading: (state)=>state = false,
+        startUploading: (state,action)=>{
+            state.status = true
+            state.message = action.payload
+        },
+        endUploading: (state)=>{
+            state.status = false
+            state.message = ""
+        },
     }
 })
 

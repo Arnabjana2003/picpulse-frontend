@@ -20,7 +20,6 @@ function FriendReqCard({ user, isRequest }) {
         if (res.success) setIsRejected(true);
       })
       .catch((err) => alert(err.response.data.message));
-    // console.log(user)
   };
   const handleSent= () => {
     friendApis
@@ -28,12 +27,12 @@ function FriendReqCard({ user, isRequest }) {
       .then((res) => {
         if (res.success) setIsSent(true);
       })
-      .catch((err) => alert(err.response.data.message));
+      .catch((err) => alert(err.response.data.message))
   };
   return (
     <div className="w-full h-[22rem] p-2 bg-slate-50 shadow-md rounded-lg mb-5 overflow-hidden">
-      <div className={`img w-full ${isRequest?"h-2/3":'h-[80%]'} bg-slate-700 overflow-hidden rounded-md`}>
-        <img src="user?.profileImageLink" className="w-full" />
+      <div className={`img w-full ${isRequest?"h-2/3":'h-[75%]'} bg-slate-700 overflow-hidden rounded-md`}>
+        <img src={user?.profileImageLink} className="w-full h-full object-cover object-center" />
       </div>
       <h4 className="font-semibold text-lg p-2">{user?.fullName}</h4>
       <div className="">
@@ -43,7 +42,7 @@ function FriendReqCard({ user, isRequest }) {
               ? "text-blue-600 font-bold"
               : "text-slate-800 font-semibold"
           }`}
-          disabled={isAccepted || isRejected}
+          disabled={isAccepted || isSent}
           onClick={()=>isRejected?handleAccept():handleSent()}
         >
           {isRequest
