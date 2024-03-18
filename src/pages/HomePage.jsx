@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import postApis from "../Backend apis/postApis"
 
 function HomePage() {
-  const [posts,setPosts] = useState([{dgg:"dfsg"}])
+  const [posts,setPosts] = useState([])
   const [loading,setLoading] = useState(true)
   useEffect(()=>{
     postApis.getFeeds()
