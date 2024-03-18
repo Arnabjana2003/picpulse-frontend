@@ -1,7 +1,8 @@
 import axios from "axios";
 import fileServices from "./fileServices";
 
-const endPoind = "http://localhost:8000/api/v1";
+// const endPoind = "http://localhost:8000/api/v1";
+const endPoind = String(import.meta.env.VITE_MONGODB_URI);
 const authHeader = {
   headers: {
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
