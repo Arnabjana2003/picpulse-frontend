@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const endPoind = String(import.meta.env.VITE_MONGODB_URI);
+const endPoind = String(import.meta.env.VITE_BACKEND_BASE_ENDPOINT);
 const authHeader = {
     headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
