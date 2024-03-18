@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import userApis from "./Backend apis/userApis";
 import { login, logout } from "./store/authSlice";
 import UploadBar from "./components/UploadBar";
+import Loading from "./components/Loading";
 
 function App() {
   const location = useLocation()
@@ -24,7 +25,7 @@ function App() {
   },[])
 
   if(loading){
-    return <p>Loading</p>
+    return <Loading/>
   }
   return (
     <div className="max-w-[100vw] min-h-[100vh] bg-slate-100 overflow-x-hidden">

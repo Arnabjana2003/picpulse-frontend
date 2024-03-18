@@ -21,7 +21,7 @@ function LikeButton({ isLiked = false, className = "",likesCount=0,postId }) {
         isLiked || liked ? "font-bold text-blue-500" : null
       }`}
     >
-      <img src={liked?likedIcon:likeIcon} className="w-6 "/>  {count}
+      <img src={liked || isLiked ?likedIcon:likeIcon} className="w-6 md:w-8 "/>  {count}
     </button>
   );
 }
