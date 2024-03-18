@@ -13,7 +13,10 @@ function Signup() {
             return alert("All fields are required")
         }
         userApis.register(data)
-        .then(()=>navigate("/login"))
+        .then(()=>{
+            alert("Account created successfully. Now login using your Mobile number and Password")
+            navigate("/login")
+        })
         .catch((err)=>{
             alert(err.response.data.message)
         })

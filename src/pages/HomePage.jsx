@@ -15,11 +15,11 @@ function HomePage() {
     .finally(()=>setLoading(false))
   },[])
   return (
-    <Layout>
+    <Layout> 
       <div className="md:w-[80%] mx-auto">
         {loading && <p>Loading...</p>}
         {!loading && !posts.length && <p className="text-lg mt-5 text-center">No post found at this moment</p>}
-        {!loading && posts.map(post=><div key={post._id}><PostCard post={post}/></div>)}
+        {!loading && posts.map((post,index)=><div key={post._id || index}><PostCard post={post}/></div>)}
       </div>
     </Layout>
   );

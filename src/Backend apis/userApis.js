@@ -25,6 +25,7 @@ const userApis = {
   login: async (data) => {
     try {
       const res = await axios.post(`${endPoind}/user/login`, data);
+      localStorage.setItem("accessToken",res.data.data?.accessToken)
       return res.data;
     } catch (error) {
       console.log("ERROR AT LOGIN API::", error);
@@ -34,6 +35,7 @@ const userApis = {
   logout: async () => {
     try {
       await axios.post(`${endPoind}/user/logout`, {}, authHeader);
+      localStorage.removeItem('accessToken');
     } catch (error) {
       console.log("ERROR AT LOGOUT API::", error);
       throw error;

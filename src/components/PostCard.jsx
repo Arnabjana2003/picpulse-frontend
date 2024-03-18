@@ -14,7 +14,7 @@ function PostCard({post}) {
                 <ProfileImgIcon owner={post?.owner} />
                 <div>
                     <h4 className='font-semibold'>{post?.owner?.fullName}</h4>
-                    <p className=' text-sm'><TimeAgo timestamp={post?.createdAt}/></p>
+                    <p className=' text-sm'>{post?.createdAt && <TimeAgo timestamp={post?.createdAt}/>}</p>
                 </div>
             </div>
             <div className='about mt-2'>
