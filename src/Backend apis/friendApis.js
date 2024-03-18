@@ -1,6 +1,7 @@
 import axios from "axios"
 
-const endPoind = String(import.meta.env.VITE_BACKEND_BASE_ENDPOINT);
+// const endPoind = String(import.meta.env.VITE_BACKEND_BASE_ENDPOINT);
+const endPoind = envConfig.backendBaseEndpoint;
 const authHeader = {
     headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,

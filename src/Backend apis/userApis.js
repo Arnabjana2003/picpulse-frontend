@@ -1,8 +1,10 @@
 import axios from "axios";
 import fileServices from "./fileServices";
+import { envConfig } from "../envConfig";
 
 // const endPoind = "http://localhost:8000/api/v1";
-const endPoind = String(import.meta.env.VITE_BACKEND_BASE_ENDPOINT);
+// const endPoind = String(import.meta.env.VITE_BACKEND_BASE_ENDPOINT);
+const endPoind = envConfig.backendBaseEndpoint;
 const authHeader = {
   headers: {
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
