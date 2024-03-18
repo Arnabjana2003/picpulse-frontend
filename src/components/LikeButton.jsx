@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import postApis from "../Backend apis/postApis";
+import likeIcon from "../assets/likeIcon.svg"
+import likedIcon from "../assets/likedIcon.svg"
 
 function LikeButton({ isLiked = false, className = "",likesCount=0,postId }) {
   const [liked, setLiked] = useState(false);
@@ -15,11 +17,11 @@ function LikeButton({ isLiked = false, className = "",likesCount=0,postId }) {
   return (
     <button
       onClick={handleLike}
-      className={`${className} ${
+      className={`${className} flex items-center gap-2 text-xl ${
         isLiked || liked ? "font-bold text-blue-500" : null
       }`}
     >
-      👍 | {count}
+      <img src={liked?likedIcon:likeIcon} className="w-6 "/>  {count}
     </button>
   );
 }

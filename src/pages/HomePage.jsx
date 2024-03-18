@@ -11,7 +11,7 @@ function HomePage() {
     .then(res=>{
       setPosts(res.data.feeds)
     })
-    .catch((err)=>alert(err.response.data.message))
+    .catch((err)=>console.log("Error at HomePage::",err))
     .finally(()=>setLoading(false))
   },[])
   return (

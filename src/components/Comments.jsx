@@ -16,7 +16,7 @@ function Comments({ post }) {
               {post?.owner?.fullName}
             </h4>
             <p className=" text-sm">
-              <TimeAgo timestamp={post?.createdAt} />
+            {post?.createdAt && <TimeAgo timestamp={post?.createdAt}/>}
             </p>
           </div>
         </div>

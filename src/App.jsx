@@ -28,7 +28,7 @@ function App() {
   }
   return (
     <div className="max-w-[100vw] min-h-[100vh] bg-slate-100 overflow-x-hidden">
-      {location.pathname !== "/signup" && location.pathname !== "/login" && <div className="mb-[70px] md:mb-[55px]"><Header/></div>}
+      {location.pathname !== "/signup" && location.pathname !== "/login" && location.pathname !== "/search" && <div className="mb-[70px] md:mb-[55px]"><Header/></div>}
       <UploadBar/>
       <Outlet />
       {/* {location.pathname !== "/signup" && location.pathname !== "/login" && <Footer/>} */}

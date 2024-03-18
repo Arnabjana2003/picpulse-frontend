@@ -11,7 +11,7 @@ function ViewPost({post}) {
                 <ProfileImgIcon owner={post?.owner?.profileImageLink} />
                 <div>
                     <h4 className='font-semibold'>{post?.owner?.fullName || "User name"}</h4>
-                    <p className=' text-sm'><TimeAgo timestamp={post?.createdAt || Date.now()}/></p>
+                    <p className=' text-sm'>{post?.createdAt && <TimeAgo timestamp={post?.createdAt}/>}</p>
                 </div>
             </div>
             <div className='about mt-2'>

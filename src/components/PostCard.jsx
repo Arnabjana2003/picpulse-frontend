@@ -4,6 +4,7 @@ import CommentButton from './CommentButton'
 import ProfileImgIcon from './ProfileImgIcon'
 import TimeAgo from './TimeAgo'
 import { Link } from 'react-router-dom'
+import commentIcon from "../assets/commentIcon.svg"
 
 function PostCard({post}) {
     const [comment,setComment] = useState(post?.commentsCount)
@@ -26,7 +27,9 @@ function PostCard({post}) {
         </Link>
         <div className='flex justify-around p-3 my-4 border-y-2'>
             <div className='px-5 py-1 rounded-md hover:bg-slate-200'><LikeButton likesCount={post?.likesCount} isLiked={post?.isLiked} postId={post._id}/></div>
-            <div className='px-5 py-1 rounded-md hover:bg-slate-200'>Comment | {comment}</div>
+            <div className='px-5 py-1 rounded-md hover:bg-slate-200 flex gap-2 text-lg items-center'>
+                <img src={commentIcon} className='w-6'/>
+                  {comment}</div>
         </div>
         <div className='p-3'>
             <CommentButton postId={post?._id} func={setComment}/>
