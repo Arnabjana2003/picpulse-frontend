@@ -1,4 +1,5 @@
 import axios from "axios"
+import { envConfig } from "../envConfig";
 
 // const endPoind = String(import.meta.env.VITE_BACKEND_BASE_ENDPOINT);
 const endPoind = envConfig.backendBaseEndpoint;
