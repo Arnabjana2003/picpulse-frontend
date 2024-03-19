@@ -16,6 +16,7 @@ import UpdatePicPage from "./pages/UpdatePicPage.jsx";
 import ViewPostPage from "./pages/ViewPostPage.jsx";
 import MobileMenu from "./pages/MobileMenu.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
+import ViewPhotoPage from "./pages/ViewPhotoPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path:"/post/:postId",
         element: <Protector authentication={true}><ViewPostPage/></Protector>
+      },
+      {
+        path:"/view/:postId",
+        element: <Protector authentication={true}><ViewPhotoPage/></Protector>
       },
       {
         path:"/profile/update/:isProfilePicUpdation/:imageId",

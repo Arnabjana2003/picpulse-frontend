@@ -15,6 +15,9 @@ function UpdatePicPage() {
 
     const handleFileInputChange = (event) => {
         const file = event.target.files[0];
+        if(file.size > (2*1024*1024)){
+          return alert("Please select an image smaller than 2MB.");
+        }
         if (file) {
             setData(file);
           const reader = new FileReader();

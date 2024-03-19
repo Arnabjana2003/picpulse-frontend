@@ -4,15 +4,20 @@ import fileServices from "../Backend apis/fileServices.js";
 import postApis from "../Backend apis/postApis.js";
 import { useDispatch, useSelector } from "react-redux";
 import { endUploading, startUploading } from "../store/uploadingStatusSlice.js";
+import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
   const currentUser = useSelector(state=>state.auth?.data)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const fileRef = useRef(null);
   const [data, setData] = useState({ about: "", file: "" });
   const [previewSrc, setPreviewSrc] = useState(null);
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
+    if(file.size > (2*1024*1024)){
+      return alert("Please select an image smaller than 2MB.");
+    }
     setData({ ...data, file });
     if (file) {
       const reader = new FileReader();
@@ -26,6 +31,7 @@ function CreatePost() {
     if (!data.file) return alert("select any photo");
     e.target.disabled = true;
     dispatch(startUploading())
+    navigate("/home")
     const fileRes = await fileServices.uploadFile(data.file);
     if (!fileRes){
       dispatch(endUploading())
@@ -49,7 +55,7 @@ function CreatePost() {
       fileServices.deleteFile(fileRes.$id);
       dispatch(endUploading())
       e.target.disabled = false;
-      alert(error.response.data.message)
+      alert(error?.response?.data?.message)
     }
   };
   return (

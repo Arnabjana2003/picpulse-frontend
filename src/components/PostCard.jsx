@@ -14,7 +14,8 @@ function PostCard({post}) {
             <div className='flex items-center'>
                 <ProfileImgIcon owner={post?.owner} />
                 <div>
-                    <h4 className='font-semibold'>{post?.owner?.fullName}</h4>
+                    <h4 className='font-semibold mr-2 inline'>{post?.owner?.fullName}</h4>
+                    <span>{post?.type}</span>
                     <p className=' text-sm'>{post?.createdAt && <TimeAgo timestamp={post?.createdAt}/>}</p>
                 </div>
             </div>

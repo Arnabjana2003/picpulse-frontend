@@ -1,6 +1,7 @@
 import React from 'react'
 import ProfileImgIcon from "./ProfileImgIcon"
 import TimeAgo from "./TimeAgo"
+import { Link } from 'react-router-dom'
 
 function ViewPost({post}) {
   
@@ -19,7 +20,9 @@ function ViewPost({post}) {
             </div>
         </header>
         <div className='m-auto w-fit h-[92%]'>
+          <Link to={`/view/${post?._id}`}>
           <img src={post?.contentUrl} className='max-w-full h-full object-contain'/>
+          </Link>
         </div>
     </div>
   )
