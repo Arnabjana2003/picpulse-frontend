@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../store/authSlice.js"
 import uploadingStatusReducer from "../store/uploadingStatusSlice.js"
+import viewdPostReducer from "../store/postViewSlice.js"
 
 const store = configureStore({
     reducer:{
         auth: authReducer,
-        uploadingStatus: uploadingStatusReducer
+        uploadingStatus: uploadingStatusReducer,
+        viewedPost:viewdPostReducer,
     }
 })
 

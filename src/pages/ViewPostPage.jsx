@@ -3,14 +3,20 @@ import ViewPost from "../components/ViewPost"
 import Comments from "../components/Comments"
 import { useParams } from 'react-router-dom'
 import postApis from "../Backend apis/postApis"
+import { useDispatch } from 'react-redux'
+import { updatePost } from "../store/postViewSlice"
 
 function ViewPostPage() {
     const {postId} = useParams()
     const [post,setPost] = useState()
+    const dispatch = useDispatch()
     useEffect(()=>{
         postApis.viewPost(postId)
-        .then((res)=>setPost(res.data))
-        .catch((err)=>alert(err.response.data.message))
+        .then((res)=>{
+            setPost(res.data)
+            dispatch(updatePost(res.data))
+        })
+        .catch((err)=>console.log(err))
     },[postId])
   return (
     <div className='md:grid grid-cols-12'>

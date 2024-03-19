@@ -2,8 +2,10 @@ import React from "react";
 import ProfileImgIcon from "./ProfileImgIcon";
 import TimeAgo from "./TimeAgo";
 import CommentUI from "./CommentUI";
+import { useSelector } from "react-redux";
 
-function Comments({ post }) {
+function Comments() {
+  const post = useSelector(state=>state.viewedPost?.post)
   return (
     <div className="p-3 md:h-screen relative">
 
@@ -38,12 +40,12 @@ function Comments({ post }) {
       <div className=" flex items-center w-full fixed md:absolute bottom-0 md:bottom-14 right-0">
           <textarea
             placeholder="Write your comment"
-            className="flex-grow w-full p-2 outline-none rounded-md h-10 md:h-fit"
+            className="flex-grow w-full p-2 outline-none rounded-s-md h-10 md:h-fit"
             // onChange={(e) => setComment(e.target.value)}
             // value={comment}
           />
           <button
-            className="py-1 px-2 text-white font-semibold rounded-md bg-blue-500"
+            className="p-2 text-white font-semibold rounded-e-md bg-blue-500"
             // onClick={handleAdd}
           >
             Add

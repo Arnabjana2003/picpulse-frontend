@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ProfileImgIcon from "./ProfileImgIcon";
 import { useSelector } from "react-redux";
 import postApis from "../Backend apis/postApis";
+import CommentUI from "./CommentUI";
 
 function CommentButton({func, postId }) {
   const [comArr, setComArr] = useState([]);
@@ -21,13 +22,14 @@ function CommentButton({func, postId }) {
       {comArr.length != 0 &&
         comArr.map((com, index) => (
           <div key={index} className="p-2 mb-3 rounded-md bg-white flex ">
-            <ProfileImgIcon owner={owner} />
+            {/* <ProfileImgIcon owner={owner} />
             <div>
               <h3 className="font-semibold text-slate-700 mb-1">
                 {owner.fullName}
               </h3>
               <p>{com}</p>
-            </div>
+            </div> */}
+            <CommentUI owner={owner} comment={{content:com,createdAt:Date.now()}}/>
           </div>
         ))}
       <div className=" flex items-center w-full">

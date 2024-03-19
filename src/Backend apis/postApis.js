@@ -29,9 +29,18 @@ const postApis = {
             throw error
         }
     },
-    likePost: async(postId)=>{
+    likePost: async(Id)=>{
         try {
-            const res = await axios.post(`${endPoind}/like`,{postId},authHeader)
+            const res = await axios.post(`${endPoind}/like`,Id,authHeader)
+            return res.data
+        } catch (error) {
+            console.log("ERROR AT LIKE POST API::",error)
+            throw error
+        }
+    },
+    unlikePost: async(Id)=>{
+        try {
+            const res = await axios.post(`${endPoind}/like/unlike`,Id,authHeader)
             return res.data
         } catch (error) {
             console.log("ERROR AT LIKE POST API::",error)
@@ -41,6 +50,24 @@ const postApis = {
     addComment: async(data)=>{
         try {
             const res = await axios.post(`${endPoind}/comment/add`,data,authHeader)
+            return res.data
+        } catch (error) {
+            console.log("ERROR AT ADD COMMENT API::",error)
+            throw error
+        }
+    },
+    updateComment: async({content,commentId})=>{
+        try {
+            const res = await axios.post(`${endPoind}/comment/update`,{content,commentId},authHeader)
+            return res.data
+        } catch (error) {
+            console.log("ERROR AT ADD COMMENT API::",error)
+            throw error
+        }
+    },
+    deleteComment: async(commentId)=>{
+        try {
+            const res = await axios.post(`${endPoind}/comment/delete`,{commentId},authHeader)
             return res.data
         } catch (error) {
             console.log("ERROR AT ADD COMMENT API::",error)
