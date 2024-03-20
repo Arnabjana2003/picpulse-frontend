@@ -11,12 +11,12 @@ function FriendsPage() {
   useEffect(() => {
     friendApis.friendRequests()
     .then((res)=>setRequests(res.data))
-    .catch((err)=>alert(err.response.data.message))
+    .catch((err)=>console.log(err))
     .finally(()=>setRequestsLoading(false))
 
     friendApis.suggestedFriends()
     .then((res)=>setSuggestions(res.data))
-    .catch((err)=>alert(err.response.data.message))
+    .catch((err)=>console.log(err))
     .finally(()=>setSuggestionsLoading(false))
   }, []);
   return (

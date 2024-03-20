@@ -16,13 +16,17 @@ function Header() {
   const navigate = useNavigate()
   const [clickMenu,setClickMenu] = useState(false)
   const currentUser = useSelector((state) => state.auth?.data);
+  const friendReqCount = useSelector(state=>state.friendReq?.count)
   const navLinks = [
     {
       name: <img src={homeIcon}/>,
       to: "/home",
     },
     {
-      name: <img src={friendsIcon}/>,
+      name: <div className="relative">
+        <img src={friendsIcon}/>
+        {friendReqCount>0? <span className="absolute -top-4 md:-top-2 -right-3 md:-right-4 px-1 rounded-full bg-red-500 text-white text-sm">{friendReqCount}</span>:null}
+      </div>,
       to: "/friends",
     },
     {

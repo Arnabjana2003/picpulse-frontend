@@ -8,6 +8,8 @@ import userApis from "./Backend apis/userApis";
 import { login, logout } from "./store/authSlice";
 import UploadBar from "./components/UploadBar";
 import Loading from "./components/Loading";
+import friendApis from "./Backend apis/friendApis";
+import { updatePendingReqCount } from "./store/friendReqSlice";
 
 function App() {
   const location = useLocation()
@@ -22,6 +24,15 @@ function App() {
       dispatch(logout())
     })
     .finally(()=>setLoading(false))
+
+    friendApis.pendingReqCount()
+    .then((res)=>{
+      dispatch(updatePendingReqCount(res.data.pendingRequestCount))
+    })
+    .catch((err)=>{
+      console.log(err)
+      alert("error occur")
+    })
   },[])
 
   if(loading){

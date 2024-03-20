@@ -8,6 +8,7 @@ function Logout({children}) {
     const handleLogout = ()=>[
         userApis.logout().then(()=>{
             dispatch(logout())
+            window.location.reload()
         }).catch((er)=>alert(er.response.data.message))
     ]
   return (

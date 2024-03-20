@@ -69,7 +69,7 @@ function CreatePost() {
         <div className="flex items-center mt-3">
           <ProfileImgIcon owner={currentUser} />
           <div className="ml-3">
-            <h5 className="font-semibold">Arnab Jana</h5>
+            <h5 className="font-semibold">{currentUser.fullName}</h5>
             <p>Public</p>
           </div>
         </div>

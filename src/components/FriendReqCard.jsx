@@ -1,27 +1,39 @@
 import React, { useState } from "react";
 import friendApis from "../Backend apis/friendApis";
+import {useDispatch} from "react-redux"
+import { decreasePendingCount } from "../store/friendReqSlice";
 
 function FriendReqCard({ user, isRequest }) {
   const [isAccepted, setIsAccepted] = useState(false);
   const [isRejected, setIsRejected] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const dispatch = useDispatch()
   const handleAccept = () => {
+    console.log("Handle Accept")
     friendApis
-      .accept({sentBy:user._id})
-      .then((res) => {
-        if (res.success) setIsAccepted(true);
-      })
-      .catch((err) => alert(err.response.data.message));
+    .accept({sentBy:user._id})
+    .then((res) => {
+      if (res.success){
+        setIsAccepted(true)
+        dispatch(decreasePendingCount())
+      };
+    })
+    .catch((err) => alert(err.response.data.message));
   };
   const handleReject = () => {
-    friendApis
-      .reject({sentBy:user._id})
-      .then((res) => {
-        if (res.success) setIsRejected(true);
-      })
-      .catch((err) => alert(err.response.data.message));
-  };
-  const handleSent= () => {
+        console.log("Handle reject")
+        friendApis
+        .reject({sentBy:user._id})
+        .then((res) => {
+          if (res.success){
+            setIsRejected(true);
+            dispatch(decreasePendingCount())
+          }
+        })
+        .catch((err) => alert(err.response.data.message));
+      };
+      const handleSent= () => {
+    console.log("Handle sent")
     friendApis
       .send({sentTo:user._id})
       .then((res) => {
@@ -42,8 +54,8 @@ function FriendReqCard({ user, isRequest }) {
               ? "text-blue-600 font-bold"
               : "text-slate-800 font-semibold"
           }`}
-          disabled={isAccepted || isSent}
-          onClick={()=>isRejected?handleAccept():handleSent()}
+          disabled={isAccepted || isSent || isRejected}
+          onClick={()=>isRequest?handleAccept():handleSent()}
         >
           {isRequest
             ? isAccepted

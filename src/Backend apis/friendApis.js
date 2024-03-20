@@ -56,6 +56,15 @@ const friendApis = {
             throw error
         }
     },
+    pendingReqCount: async ()=>{
+        try {
+            const res = await axios.get(`${endPoind}/friend/pendingcount`,authHeader)
+            return res.data
+        } catch (error) {
+            console.log("ERROR AT SUGGESTION REQUESTS API::",error)
+            throw error
+        }
+    },
 }
 
 export default friendApis
