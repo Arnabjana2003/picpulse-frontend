@@ -29,7 +29,7 @@ function ViewPost() {
   }
   return (
     <div className='w-full h-fit md:h-screen'>
-       <header className="p-3 relative">
+       <header className="md:hidden p-3 relative">
         <div className="flex items-center">
           <ProfileImgIcon owner={post?.owner} />
           <div>
