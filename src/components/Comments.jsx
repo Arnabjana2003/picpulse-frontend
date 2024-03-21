@@ -5,10 +5,12 @@ import CommentUI from "./CommentUI";
 import { useDispatch, useSelector } from "react-redux";
 import postApis from "../Backend apis/postApis";
 import { addComment } from "../store/postViewSlice";
+import crossIcon from "../assets/crossIcon.svg"
 
 function Comments() {
   const post = useSelector(state=>state.viewedPost?.post)
   const dispatch = useDispatch()
+  const [showDots,setShowDots] = useState(false)
   const currentUser = useSelector(state=>state.auth?.data)
   const [text,setText] = useState("")
   const handleAdd = ()=>{
@@ -19,25 +21,50 @@ function Comments() {
     .catch((err)=>console.log(err))
     .finally(()=>setText(""))
   }
+  const deletePost = (e)=>{
+    e.target.disabled = true
+    postApis.deletePost(post?._id,post?.contentId)
+    .then(()=>{
+      dispatch(updatePost(null))
+      navigate("/home")
+    })
+    .catch((err)=>{
+      console.log(err) 
+      alert(err?.response?.data?.message)
+    })
+    .finally(()=>e.target.disabled = false)
+  }
   return (
     <div className="p-3 md:h-screen relative">
 
       <div className="md:h-[80%] overflow-auto">
-      <header className="hidden md:block p-2">
+      <header className="hidden md:block p-3 relative">
         <div className="flex items-center">
           <ProfileImgIcon owner={post?.owner} />
           <div>
-            <h4 className="font-semibold">
+            <h4 className="font-semibold mr-2 inline">
               {post?.owner?.fullName}
             </h4>
+            <span>{post?.type}</span>
             <p className=" text-sm">
-            {post?.createdAt && <TimeAgo timestamp={post?.createdAt}/>}
+              {post?.createdAt && <TimeAgo timestamp={post?.createdAt} />}
             </p>
           </div>
         </div>
         <div className="about mt-2">
           <p>{post?.about}</p>
         </div>
+        
+        {currentUser?._id === post?.owner?._id && <div className='absolute -top-4 md:top-0 right-2'>
+          <span className='cursor-pointer' onClick={()=>setShowDots(prev=>!prev)}>
+            {
+              showDots?<img src={crossIcon} className='w-5'/>:<span className='text-lg font-bold'>...</span>
+            }
+          </span>
+          {showDots && <div className='absolute right-1 top-6 rounded-lg rounded-tr-none p-2 bg-slate-200'>
+            <button className='text-nowrap disabled:text-white' onClick={deletePost}>Delete post</button>
+          </div>}
+        </div>}
       </header>
 
       <section className="comments-section pb-10">

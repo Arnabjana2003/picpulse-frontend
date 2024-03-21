@@ -22,7 +22,7 @@ function ViewPost() {
       navigate("/home")
     })
     .catch((err)=>{
-      console.log(err)
+      console.log(err) 
       alert(err?.response?.data?.message)
     })
     .finally(()=>e.target.disabled = false)
