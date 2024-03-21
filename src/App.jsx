@@ -29,10 +29,6 @@ function App() {
     .then((res)=>{
       dispatch(updatePendingReqCount(res.data.pendingRequestCount))
     })
-    .catch((err)=>{
-      console.log(err)
-      alert("error occur")
-    })
   },[])
 
   if(loading){
@@ -40,7 +36,7 @@ function App() {
   }
   return (
     <div className="max-w-[100vw] min-h-[100vh] bg-slate-100 overflow-x-hidden">
-      {location.pathname !== "/signup" && location.pathname !== "/login" && location.pathname !== "/search" && !location.pathname.includes("/view/") && <div className="mb-[70px] md:mb-[55px]"><Header/></div>}
+      {location.pathname !== "/signup" && location.pathname !== "/login" && location.pathname !== "/search" && location.pathname !=="/menu" && !location.pathname.includes("/view/") && <div className="mb-[70px] md:mb-[55px]"><Header/></div>}
       <div className="pt-5">
       <UploadBar/>
       </div>

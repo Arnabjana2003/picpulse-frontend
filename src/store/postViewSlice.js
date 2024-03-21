@@ -11,6 +11,9 @@ const postViewSlice = createSlice({
         updatePost: (state,action)=>{
             state.post = action.payload
         },
+        addComment : (state,action)=>{
+            state.post.comments.push(action.payload)
+        },
         deleteComment:(state,action)=>{
             state.post.comments = state.post?.comments.filter(com=>com._id!=action.payload)
         },
@@ -28,4 +31,4 @@ const postViewSlice = createSlice({
 })
 
 export default postViewSlice.reducer
-export const {updatePost,deleteComment,updateComment} = postViewSlice.actions
+export const {updatePost,deleteComment,updateComment,addComment} = postViewSlice.actions

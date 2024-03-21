@@ -12,7 +12,7 @@ function Layout({children}) {
           }}>
             <Nav/>
           </div>
-          <div className='p-4 col-span-6 md:col-span-8'style={{
+          <div className='col-span-6 md:col-span-8'style={{
             overflowY: 'auto',  // Enable scrolling
             scrollbarWidth: 'thin',  // Firefox
             scrollbarColor: 'lightgrey transparent'  // Firefox

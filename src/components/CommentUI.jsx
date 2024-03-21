@@ -19,16 +19,16 @@ function CommentUI({ owner, comment }) {
   const dispatch = useDispatch();
   const handleDeleteComment = () => {
     postApis
-      .deleteComment(comment._id)
-      .then(() => dispatch(deleteComment(comment._id)))
+      .deleteComment(comment?._id)
+      .then(() => dispatch(deleteComment(comment?._id)))
       .catch((err) => alert(err?.response?.data?.message));
   };
   const handleUpdateComment = () => {
     if (isEditable) {
       postApis
-        .updateComment({ content: text, commentId: comment._id })
+        .updateComment({ content: text, commentId: comment?._id })
         .then(() => {
-          dispatch(updateComment({ content: text, commentId: comment._id }));
+          dispatch(updateComment({ content: text, commentId: comment?._id }));
           setIsEditable(false);
         })
         .catch((err) => {
@@ -56,7 +56,7 @@ function CommentUI({ owner, comment }) {
             to={`/profile/${owner?._id}`}
             className="font-semibold text-slate-700 mb-1"
           >
-            {owner.fullName}
+            {owner?.fullName}
           </Link>
           <input
             type="text"
@@ -69,7 +69,7 @@ function CommentUI({ owner, comment }) {
         </div>
         <div className="">
           {comment?.createdAt && (
-            <TimeAgo className="text-xs" timestamp={comment.createdAt} />
+            <TimeAgo className="text-xs" timestamp={comment?.createdAt} />
           )}
           {comment?._id && (
             <div className="flex gap-4">
@@ -80,7 +80,7 @@ function CommentUI({ owner, comment }) {
                 commentId={comment?._id}
               />
               {/* <p>Comment</p> */}
-              {owner._id == currentUser._id ? (
+              {owner?._id == currentUser._id ? (
                 <span className="flex gap-4">
                   {isEditable && (
                     <img

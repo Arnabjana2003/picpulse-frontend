@@ -1,11 +1,24 @@
-import React from "react";
+import React,{useState} from "react";
 import ProfileImgIcon from "./ProfileImgIcon";
 import TimeAgo from "./TimeAgo";
 import CommentUI from "./CommentUI";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import postApis from "../Backend apis/postApis";
+import { addComment } from "../store/postViewSlice";
 
 function Comments() {
   const post = useSelector(state=>state.viewedPost?.post)
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state=>state.auth?.data)
+  const [text,setText] = useState("")
+  const handleAdd = ()=>{
+    postApis.addComment({content:text,postId:post?._id})
+    .then((res)=>{
+      dispatch(addComment({...res?.data,commenter:currentUser}))
+    })
+    .catch((err)=>console.log(err))
+    .finally(()=>setText(""))
+  }
   return (
     <div className="p-3 md:h-screen relative">
 
@@ -41,12 +54,12 @@ function Comments() {
           <textarea
             placeholder="Write your comment"
             className="flex-grow w-full p-2 outline-none rounded-s-md h-10 md:h-fit"
-            // onChange={(e) => setComment(e.target.value)}
-            // value={comment}
+            onChange={(e) => setText(e.target.value)}
+            value={text}
           />
           <button
             className="p-2 text-white font-semibold rounded-e-md bg-blue-500"
-            // onClick={handleAdd}
+            onClick={handleAdd}
           >
             Add
           </button>

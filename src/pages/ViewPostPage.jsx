@@ -8,12 +8,10 @@ import { updatePost } from "../store/postViewSlice"
 
 function ViewPostPage() {
     const {postId} = useParams()
-    const [post,setPost] = useState()
     const dispatch = useDispatch()
     useEffect(()=>{
         postApis.viewPost(postId)
         .then((res)=>{
-            setPost(res.data)
             dispatch(updatePost(res.data))
         })
         .catch((err)=>console.log(err))
@@ -21,10 +19,10 @@ function ViewPostPage() {
   return (
     <div className='md:grid grid-cols-12'>
         <section className='post-content col-span-9 '>
-            <ViewPost post={post}/>
+            <ViewPost />
         </section>
         <section className='post-comments col-span-3'>
-            <Comments post={post}/>
+            <Comments />
         </section>
     </div>
   )

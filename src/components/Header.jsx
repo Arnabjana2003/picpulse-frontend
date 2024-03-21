@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-import ProfileIcon from "./ProfileIcon";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import ProfileImgIcon from "./ProfileImgIcon";
 import { useSelector } from "react-redux";
@@ -64,7 +63,7 @@ function Header() {
               <img src={searchIcon}/>
             </Link>
             <div className=" w-9 p-1 rounded-md bg-slate-100" onClick={handleMenu}>
-            <img src={clickMenu?crossIcon:menubarIcon}/>
+            <img src={menubarIcon}/>
             </div>
           </div>
         </div>
@@ -85,9 +84,6 @@ function Header() {
             </NavLink>
           ))}
         </div>
-        {/* <div className="hidden md:flex justify-center items-center lg:hidden col-span-1">
-          <p>Menu</p>
-        </div> */}
         <div className="hidden col-span-3 lg:flex items-center justify-end">
           <ProfileImgIcon owner={currentUser} />
         </div>

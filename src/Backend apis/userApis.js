@@ -2,15 +2,7 @@ import axios from "axios";
 import fileServices from "./fileServices";
 import { envConfig } from "../envConfig";
 
-// const endPoind = "http://localhost:8000/api/v1";
-// const endPoind = String(import.meta.env.VITE_BACKEND_BASE_ENDPOINT);
 const endPoind = envConfig.backendBaseEndpoint;
-const authHeader = {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-    "Content-Type": "application/json",
-  },
-};
 
 const userApis = {
   register: async (data) => {
@@ -25,7 +17,7 @@ const userApis = {
   login: async (data) => {
     try {
       const res = await axios.post(`${endPoind}/user/login`, data);
-      localStorage.setItem("accessToken",res.data.data?.accessToken)
+      localStorage.setItem("accessToken", res.data.data?.accessToken);
       return res.data;
     } catch (error) {
       console.log("ERROR AT LOGIN API::", error);
@@ -34,8 +26,17 @@ const userApis = {
   },
   logout: async () => {
     try {
-      await axios.post(`${endPoind}/user/logout`, {}, authHeader);
-      localStorage.removeItem('accessToken');
+      await axios.post(
+        `${endPoind}/user/logout`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      localStorage.removeItem("accessToken");
     } catch (error) {
       console.log("ERROR AT LOGOUT API::", error);
       throw error;
@@ -43,7 +44,12 @@ const userApis = {
   },
   currentUser: async () => {
     try {
-      const res = await axios.get(`${endPoind}/user/currentuser`, authHeader);
+      const res = await axios.get(`${endPoind}/user/currentuser`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json",
+        },
+      });
       return res.data;
     } catch (error) {
       console.log("ERROR AT CURRENT USER API::", error);
@@ -55,7 +61,12 @@ const userApis = {
       const res = await axios.post(
         `${endPoind}/user/viewprofile`,
         { userId },
-        authHeader
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       return res.data;
     } catch (error) {
@@ -63,28 +74,32 @@ const userApis = {
       throw error;
     }
   },
-  changeProfileImage: async (imageId,file) => {
-    console.log({imageId,file})
+  changeProfileImage: async (imageId, file) => {
     try {
-        let isUploaded,previewImg;
+      let isUploaded, previewImg;
       if (imageId) {
-          isUploaded = await fileServices.uploadFile(file);
-          if (!isUploaded) throw new Error("unable to upload file");
-        const isDeleted = await fileServices.deleteFile(imageId);
-        if (!isDeleted){
-            await fileServices.deleteFile(isUploaded?.$id)
-            throw new Error("unable to delete photo");
-        };
-        previewImg = await fileServices.getFilePreview(isUploaded?.$id)
-    }else{
         isUploaded = await fileServices.uploadFile(file);
         if (!isUploaded) throw new Error("unable to upload file");
-        previewImg = await fileServices.getFilePreview(isUploaded?.$id)
+        const isDeleted = await fileServices.deleteFile(imageId);
+        if (!isDeleted) {
+          await fileServices.deleteFile(isUploaded?.$id);
+          throw new Error("unable to delete photo");
+        }
+        previewImg = await fileServices.getFilePreview(isUploaded?.$id);
+      } else {
+        isUploaded = await fileServices.uploadFile(file);
+        if (!isUploaded) throw new Error("unable to upload file");
+        previewImg = await fileServices.getFilePreview(isUploaded?.$id);
       }
       const res = await axios.post(
         `${endPoind}/user/updateprofileimage`,
-        { profileImageLink:previewImg.href,profileImageId:isUploaded.$id },
-        authHeader
+        { profileImageLink: previewImg.href, profileImageId: isUploaded.$id },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       return res.data;
     } catch (error) {
@@ -92,27 +107,32 @@ const userApis = {
       throw error;
     }
   },
-  changeCoverImage: async (imageId,file) => {
+  changeCoverImage: async (imageId, file) => {
     try {
-        let isUploaded,previewImg;
+      let isUploaded, previewImg;
       if (imageId) {
-          isUploaded = await fileServices.uploadFile(file);
-          if (!isUploaded) throw new Error("unable to upload file");
-        const isDeleted = await fileServices.deleteFile(imageId);
-        if (!isDeleted){
-            await fileServices.deleteFile(isUploaded?.$id)
-            throw new Error("unable to delete photo");
-        };
-        previewImg = await fileServices.getFilePreview(isUploaded?.$id)
-    }else{
         isUploaded = await fileServices.uploadFile(file);
         if (!isUploaded) throw new Error("unable to upload file");
-        previewImg = await fileServices.getFilePreview(isUploaded?.$id)
+        const isDeleted = await fileServices.deleteFile(imageId);
+        if (!isDeleted) {
+          await fileServices.deleteFile(isUploaded?.$id);
+          throw new Error("unable to delete photo");
+        }
+        previewImg = await fileServices.getFilePreview(isUploaded?.$id);
+      } else {
+        isUploaded = await fileServices.uploadFile(file);
+        if (!isUploaded) throw new Error("unable to upload file");
+        previewImg = await fileServices.getFilePreview(isUploaded?.$id);
       }
       const res = await axios.post(
         `${endPoind}/user/updatecoverimage`,
-        { coverImageLink:previewImg.href,coverImageId:isUploaded.$id },
-        authHeader
+        { coverImageLink: previewImg.href, coverImageId: isUploaded.$id },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       return res.data;
     } catch (error) {

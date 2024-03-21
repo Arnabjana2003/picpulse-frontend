@@ -22,13 +22,6 @@ function CommentButton({func, postId }) {
       {comArr.length != 0 &&
         comArr.map((com, index) => (
           <div key={index} className="p-2 mb-3 rounded-md bg-white flex ">
-            {/* <ProfileImgIcon owner={owner} />
-            <div>
-              <h3 className="font-semibold text-slate-700 mb-1">
-                {owner.fullName}
-              </h3>
-              <p>{com}</p>
-            </div> */}
             <CommentUI owner={owner} comment={{content:com,createdAt:Date.now()}}/>
           </div>
         ))}
