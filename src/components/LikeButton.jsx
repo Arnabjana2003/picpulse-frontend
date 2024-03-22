@@ -9,35 +9,52 @@ function LikeButton({ isLiked = false, className = "text-sm md:text-base",likesC
   const handleLike = ()=>{
     if(!isComment){
       if(!liked){
-        postApis.likePost({postId})
-      .then(()=>{
         setCount(prev=>prev+1)
         setLiked(true)
+        postApis.likePost({postId})
+        .then(()=>{
+        })
+        .catch((err)=>{
+        setCount(prev=>--prev)
+        setLiked(false)
+        alert(err?.response?.data?.message)
       })
-      .catch((err)=>alert(err.response.data.message))
       }else{
-        postApis.unlikePost({postId})
-      .then(()=>{
         setCount(prev=>prev-1)
         setLiked(false)
+        postApis.unlikePost({postId})
+        .then(()=>{
+          
+        })
+        .catch((err)=>{
+        setCount(prev=>++prev)
+        setLiked(true)
+        alert(err.response.data.message)
       })
-      .catch((err)=>alert(err.response.data.message))
       }
     }else{
       if(!liked){
-        postApis.likePost({commentId})
-      .then(()=>{
-        setCount(prev=>prev+1)
+        setCount(prev=>++prev)
         setLiked(true)
+        postApis.likePost({commentId})
+        .then(()=>{
+        })
+        .catch((err)=>{
+        setCount(prev=>--prev)
+        setLiked(false)
+        alert(err.response.data.message)
       })
-      .catch((err)=>alert(err.response.data.message))
       }else{
-        postApis.unlikePost({commentId})
-      .then(()=>{
         setCount(prev=>prev-1)
         setLiked(false)
+        postApis.unlikePost({commentId})
+        .then(()=>{
+        })
+        .catch((err)=>{
+        setCount(prev=>++prev)
+        setLiked(true)
+        alert(err.response.data.message)
       })
-      .catch((err)=>alert(err.response.data.message))
       }
     }
   }
