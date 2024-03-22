@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import friendApis from "../Backend apis/friendApis";
 import {useDispatch} from "react-redux"
 import { decreasePendingCount } from "../store/friendReqSlice";
+import {Link} from "react-router-dom"
 
 function FriendReqCard({ user, isRequest }) {
   const [isAccepted, setIsAccepted] = useState(false);
@@ -44,9 +45,9 @@ function FriendReqCard({ user, isRequest }) {
   return (
     <div className="w-full h-[22rem] p-2 bg-slate-50 shadow-md rounded-lg mb-5 overflow-hidden">
       <div className={`img w-full ${isRequest?"h-2/3":'h-[75%]'} bg-slate-700 overflow-hidden rounded-md`}>
-        <img src={user?.profileImageLink} className="w-full h-full object-cover object-center" />
+      <Link to={`/profile/${user?._id}`}><img src={user?.profileImageLink} className="w-full h-full object-cover object-center" /></Link>
       </div>
-      <h4 className="font-semibold text-lg p-2">{user?.fullName}</h4>
+      <Link to={`/profile/${user?._id}`}><h4 className="font-semibold text-lg p-2">{user?.fullName}</h4></Link>
       <div className="">
         <button
           className={`w-full rounded-md text-center mb-2 p-1 disabled:text-slate-300 bg-blue-100 ${
