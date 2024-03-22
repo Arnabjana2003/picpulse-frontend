@@ -32,10 +32,10 @@ function App() {
   },[])
 
   if(loading){
-    return <Loading/>
+    return <div className="font-sans"><Loading/></div>
   }
   return (
-    <div className="max-w-[100vw] min-h-[100vh] bg-slate-100 overflow-x-hidden">
+    <div className="max-w-[100vw] min-h-[100vh] bg-slate-100 overflow-x-hidden font-sans">
       {location.pathname !== "/signup" && location.pathname !== "/login" && location.pathname !== "/search" && location.pathname !=="/menu" && !location.pathname.includes("/view/") && <div className="mb-[70px] md:mb-[55px]"><Header/></div>}
       <div className="pt-5">
       <UploadBar/>
