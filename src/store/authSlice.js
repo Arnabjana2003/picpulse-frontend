@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     status: false,
+    searchHistory: [],
     data: {}
 }
 
@@ -16,9 +17,12 @@ const authSice = createSlice({
         logout: (state)=>{
             state.status = false
             state.data = {}
+        },
+        updateSearchHistory: (state,action)=>{
+            state.searchHistory = action.payload
         }
     }
 })
 
-export const {login,logout} = authSice.actions
+export const {login,logout,updateSearchHistory} = authSice.actions
 export default authSice.reducer

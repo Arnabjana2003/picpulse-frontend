@@ -17,6 +17,7 @@ import ViewPostPage from "./pages/ViewPostPage.jsx";
 import MobileMenu from "./pages/MobileMenu.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import ViewPhotoPage from "./pages/ViewPhotoPage.jsx";
+import SearchResultPage from "./pages/SearchResultPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path:"/search",
         element: <Protector authentication={true}><SearchPage/></Protector>
+      },
+      {
+        path:"/search/result/:query",
+        element: <Protector authentication={true}><SearchResultPage/></Protector>
       },
     ],
   },

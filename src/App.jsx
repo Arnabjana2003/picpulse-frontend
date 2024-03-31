@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import userApis from "./Backend apis/userApis";
-import { login, logout } from "./store/authSlice";
+import { login, logout, updateSearchHistory } from "./store/authSlice";
 import UploadBar from "./components/UploadBar";
 import Loading from "./components/Loading";
 import friendApis from "./Backend apis/friendApis";
@@ -24,6 +24,11 @@ function App() {
       dispatch(logout())
     })
     .finally(()=>setLoading(false))
+
+    userApis.getSearchHistory()
+    .then(res=>{
+      dispatch(updateSearchHistory([...res.data[0].searchHistory].reverse()))
+    })
 
     friendApis.pendingReqCount()
     .then((res)=>{

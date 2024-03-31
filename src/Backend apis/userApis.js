@@ -140,6 +140,70 @@ const userApis = {
       throw error;
     }
   },
+
+  getSearchHistory: async()=>{
+    try {
+      const res = await axios.get(
+        `${endPoind}/user/searchhistory`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      return res.data
+    } catch (error) {
+      console.log("ERROR AT GET SERACH HISTORY API::", error);
+      throw error;
+    }
+  },
+
+  searchResult: async (query)=>{
+    try {
+      const res = await axios.post(
+        `${endPoind}/user/search`,
+        {
+          query
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      return res.data
+    } catch (error) {
+      console.log("ERROR AT SEARCH RESULT API::", error);
+      throw error;
+    }
+  },
+
+  removeHistory: async(query)=>{
+    try {
+      const res = await axios.delete(
+        `${endPoind}/user/removehistory`,
+        // {
+        //   query
+        // },
+        {
+          data:{query},
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      return res.data
+    } catch (error) {
+      console.log("ERROR AT REMOVE HISTORY API::", error);
+      throw error;
+    }
+  },
 };
 
 export default userApis;
