@@ -1,25 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import {Link, useParams} from "react-router-dom"
+import {useParams} from "react-router-dom"
 import userApis from '../Backend apis/userApis'
-import ProfileImgIcon from '../components/ProfileImgIcon'
 import Layout from '../components/Layout'
 import { useDispatch } from 'react-redux'
 import { updateSearchHistory } from '../store/authSlice'
+import UserCard from '../components/UserCard'
 
-function Cards({info}){
-return(
-    <div className='w-full flex justify-between'>
-        <div className='left-part flex'>
-            <ProfileImgIcon owner={info} />
-            <div>
-                <Link to={`/profile/${info._id}`}><h3 className='font-semibold'>{info.fullName}</h3></Link>
-                <p className='text-sm capitalize'>{info.gender}</p>
-            </div>
-        </div>
-        <div className='right-part'></div>
-    </div>
-)
-}
 
 
 function SearchResultPage() {
@@ -42,10 +28,10 @@ function SearchResultPage() {
   return (
     <Layout>
 
-    <div className='w-full'>
+    <div className='w-full md:w-[80%] lg:w-[70%] mx-auto p-2'>
         {!loading && !results.length && <p className='text-center font-semibold'>No result found</p>}
         {loading && !results.length && <p className='text-center mt-10'>Loading...</p>}
-        {results.map(res=><div key={res._id} className='mb-2'><Cards info={res}/></div>)}
+        {results.map(res=><div key={res._id} className='mb-5'><UserCard info={res} isFriend={res.statusWithCurrentUser}/></div>)}
     </div>
     </Layout>
   )

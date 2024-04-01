@@ -38,7 +38,7 @@ function ProfilePage() {
             </Link>}
             <div className="absolute -bottom-12 md:-bottom-14">
               <h2 className="font-bold text-lg md:text-xl">{user?.fullName}</h2>
-              <p className="text-sm md:text-base ">{user?.friendsCount} friends</p>
+              <Link to={`/${user?._id}/friend/all`} className="text-sm md:text-base font-semibold">{user?.friendsCount} friends</Link>
             </div>
           </div>
         </div>

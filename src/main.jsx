@@ -18,6 +18,7 @@ import MobileMenu from "./pages/MobileMenu.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import ViewPhotoPage from "./pages/ViewPhotoPage.jsx";
 import SearchResultPage from "./pages/SearchResultPage.jsx";
+import AllFriendsPage from "./pages/AllFriendsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path:"/search/result/:query",
         element: <Protector authentication={true}><SearchResultPage/></Protector>
+      },
+      {
+        path:"/:userId/friend/all",
+        element: <Protector authentication={true}><AllFriendsPage/></Protector>
       },
     ],
   },

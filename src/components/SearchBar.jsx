@@ -34,7 +34,7 @@ function SearchBar() {
         {showHistory && <section className='hidden md:block z-10 absolute bg-white mt-1 right-0 left-0 max-h-72 w-60 rounded-md rounded-tl-none overflow-y-auto p-3 shadow-md'>
           {!history.length && <p className='text-center'>No History</p>}
           <ul>
-            {history.map((item,index)=><li key={index} className='  w-full flex justify-between'>
+            {history.map((item,index)=><li key={index} className='  w-full flex justify-between items-center'>
               <p className='hover:bg-slate-100 p-2 rounded-md' onClick={()=>{setText(item);setShowHistory(false)}}>{item}</p><span className='pl-2' onClick={()=>removeHistory(item)}>x</span>
             </li>)}
           </ul>

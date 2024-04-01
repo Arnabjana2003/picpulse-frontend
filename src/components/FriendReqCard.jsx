@@ -12,7 +12,7 @@ function FriendReqCard({ user, isRequest }) {
   const handleAccept = () => {
     console.log("Handle Accept")
     friendApis
-    .accept({sentBy:user._id})
+    .accept(user._id)
     .then((res) => {
       if (res.success){
         setIsAccepted(true)
@@ -24,7 +24,7 @@ function FriendReqCard({ user, isRequest }) {
   const handleReject = () => {
         console.log("Handle reject")
         friendApis
-        .reject({sentBy:user._id})
+        .reject(user._id)
         .then((res) => {
           if (res.success){
             setIsRejected(true);
@@ -36,7 +36,7 @@ function FriendReqCard({ user, isRequest }) {
       const handleSent= () => {
     console.log("Handle sent")
     friendApis
-      .send({sentTo:user._id})
+      .send(user._id)
       .then((res) => {
         if (res.success) setIsSent(true);
       })

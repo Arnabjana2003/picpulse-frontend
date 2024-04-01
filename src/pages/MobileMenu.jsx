@@ -22,8 +22,8 @@ function MobileMenu() {
           to={`/profile/${auth?.data?._id}`}
           className="flex gap-2 items-center"
         >
-          <img className="w-6" src={profileIcon} />
-          <p>Arnab Jana</p>
+          <img className="w-5" src={profileIcon} />
+          <p>{auth?.data?.fullName}</p>
         </Link>
       </div>
 

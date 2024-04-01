@@ -20,7 +20,7 @@ const friendApis = {
   },
   send: async (sentTo) => {
     try {
-      const res = await axios.post(`${endPoind}/friend/send`, sentTo, {
+      const res = await axios.post(`${endPoind}/friend/send`, {sentTo}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           "Content-Type": "application/json",
@@ -32,9 +32,23 @@ const friendApis = {
       throw error;
     }
   },
+  unsend: async (sentTo) => {
+    try {
+      const res = await axios.post(`${endPoind}/friend/unsend`, {sentTo}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json",
+        },
+      });
+      return res.data;
+    } catch (error) {
+      console.log("ERROR AT UNSEND REQUESTS API::", error);
+      throw error;
+    }
+  },
   accept: async (sentBy) => {
     try {
-      const res = await axios.post(`${endPoind}/friend/accept`, sentBy, {
+      const res = await axios.post(`${endPoind}/friend/accept`, {sentBy}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           "Content-Type": "application/json",
@@ -48,7 +62,7 @@ const friendApis = {
   },
   reject: async (sentBy) => {
     try {
-      const res = await axios.post(`${endPoind}/friend/reject`, sentBy, {
+      const res = await axios.post(`${endPoind}/friend/reject`, {sentBy}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           "Content-Type": "application/json",
@@ -88,6 +102,24 @@ const friendApis = {
       throw error;
     }
   },
+  getAllFriends: async(userId)=>{
+    try {
+      const res = await axios.post(`${endPoind}/friend/all`, 
+      {
+        userId
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json",
+        },
+      });
+      return res.data;
+    } catch (error) {
+      console.log("ERROR AT GET ALL FRIENDS API::", error);
+      throw error;
+    }
+  }
 };
 
 export default friendApis;
