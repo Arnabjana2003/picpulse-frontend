@@ -16,7 +16,6 @@ function SearchResultPage() {
     useEffect(()=>{
         userApis.searchResult(query)
         .then((res)=>{
-            console.log(res.data.searchResult)
             setResults(res.data.searchResult)
             dispatch(updateSearchHistory([...res.data.updatedHistory.searchHistory].reverse()))
         })
