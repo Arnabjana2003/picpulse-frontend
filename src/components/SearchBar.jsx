@@ -27,7 +27,7 @@ function SearchBar() {
     const regex = new RegExp(e.target.value, "i");
     setHistoryList(history.filter((item) => regex.test(item)));
   };
-  const debounced = debouncedFunction(historySuggestion, 500);
+  const debounced = debouncedFunction(historySuggestion, 400);
   const handleSearch = () => {
     setShowHistory(false);
     if (!text) return;
